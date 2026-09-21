@@ -1,0 +1,849 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+    background: #0b1120;
+    color: #e5e7eb;
+}
+
+button {
+    font-family: inherit;
+}
+
+.dashboard {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at top right,
+            #172554 0,
+            #0b1120 35%
+        );
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1f2937;
+    background: rgba(17, 24, 39, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(12px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1d4ed8;
+    font-size: 23px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.header p {
+    margin: 5px 0 0;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.system-status {
+    padding: 9px 14px;
+    border: 1px solid #14532d;
+    background: #052e16;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #4ade80;
+}
+
+.status-dot,
+.system-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-dot {
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    max-width: 1450px;
+    margin: auto;
+    padding: 30px;
+}
+
+.connection-warning {
+    margin-bottom: 18px;
+    padding: 12px 16px;
+    background: #422006;
+    border: 1px solid #92400e;
+    color: #fbbf24;
+    border-radius: 9px;
+    font-size: 13px;
+}
+
+/* =========================================================
+   KPI CARDS
+========================================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.stat-card {
+    padding: 22px;
+    background: rgba(17, 24, 39, 0.9);
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #374151;
+}
+
+.stat-card span {
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 34px;
+    margin: 10px 0;
+}
+
+.stat-card small {
+    color: #6b7280;
+}
+
+.danger strong {
+    color: #ef4444;
+}
+
+.warning strong {
+    color: #f59e0b;
+}
+
+.success strong {
+    color: #22c55e;
+}
+
+/* =========================================================
+   MONITORING CARDS
+========================================================= */
+
+.monitor-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.monitor-card {
+    background: rgba(17, 24, 39, 0.9);
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 21px;
+}
+
+.monitor-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #d1d5db;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.monitor-icon {
+    font-size: 19px;
+}
+
+.monitor-value {
+    margin-top: 17px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.monitor-label {
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.mini-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #1f2937;
+}
+
+.mini-stats div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mini-stats span {
+    color: #6b7280;
+    font-size: 11px;
+}
+
+.mini-stats strong {
+    font-size: 14px;
+}
+
+.danger-text {
+    color: #f87171;
+}
+
+.warning-text {
+    color: #fbbf24;
+}
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.main-grid {
+    display: grid;
+    grid-template-columns:
+        1.4fr 1fr;
+    gap: 22px;
+}
+
+.panel {
+    background: rgba(17, 24, 39, 0.9);
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 24px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.panel-header h2 {
+    margin: 0;
+    font-size: 19px;
+}
+
+.panel-header p {
+    margin: 6px 0 0;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.live {
+    color: #22c55e;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* =========================================================
+   TRANSACTION
+========================================================= */
+
+.transaction-id {
+    padding: 12px;
+    background: #0b1120;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.transaction-id strong {
+    margin-left: 8px;
+    color: #e5e7eb;
+}
+
+.transaction-details {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.transaction-details div {
+    padding: 12px;
+    background: #0b1120;
+    border-radius: 8px;
+}
+
+.transaction-details span {
+    display: block;
+    color: #6b7280;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.transaction-details strong {
+    font-size: 13px;
+}
+
+/* =========================================================
+   RISK
+========================================================= */
+
+.risk-section {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.risk-circle {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 10px solid #374151;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.risk-circle.high {
+    border-color: #ef4444;
+}
+
+.risk-circle.medium {
+    border-color: #f59e0b;
+}
+
+.risk-circle.low {
+    border-color: #22c55e;
+}
+
+.risk-circle strong {
+    font-size: 38px;
+}
+
+.risk-circle span {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.risk-circle small {
+    margin-top: 5px;
+    color: #9ca3af;
+    font-size: 10px;
+}
+
+.risk-info {
+    flex: 1;
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid #1f2937;
+    gap: 15px;
+}
+
+.metric span {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.metric strong {
+    color: #fff;
+    font-size: 12px;
+    text-align: right;
+}
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.badge.high {
+    background: #451a1a;
+    color: #f87171;
+}
+
+.badge.medium {
+    background: #422006;
+    color: #fbbf24;
+}
+
+.badge.low {
+    background: #052e16;
+    color: #4ade80;
+}
+
+.badge.neutral {
+    background: #1f2937;
+    color: #9ca3af;
+}
+
+/* =========================================================
+   SIGNALS
+========================================================= */
+
+.signals h3 {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.signal {
+    padding: 9px 12px;
+    margin: 7px 0;
+    border-radius: 7px;
+    background: #172033;
+    color: #cbd5e1;
+    font-size: 11px;
+}
+
+.signal.graph {
+    background: #172033;
+    color: #93c5fd;
+}
+
+/* =========================================================
+   DECISION
+========================================================= */
+
+.decision-box {
+    margin-top: 18px;
+    padding: 17px;
+    border-radius: 10px;
+    background: #172033;
+    text-align: center;
+}
+
+.decision-box.high {
+    background: #2a1616;
+}
+
+.decision-box.medium {
+    background: #2a1c08;
+}
+
+.decision-box.low {
+    background: #052e16;
+}
+
+.decision-box.neutral {
+    background: #172033;
+}
+
+.decision-box span {
+    display: block;
+    font-size: 10px;
+    color: #9ca3af;
+}
+
+.decision-box strong {
+    display: block;
+    font-size: 20px;
+    margin: 7px 0;
+}
+
+.decision-box.high strong {
+    color: #f87171;
+}
+
+.decision-box.medium strong {
+    color: #fbbf24;
+}
+
+.decision-box.low strong {
+    color: #4ade80;
+}
+
+.decision-box.neutral strong {
+    color: #93c5fd;
+}
+
+.decision-box small {
+    color: #9ca3af;
+}
+
+/* =========================================================
+   PIPELINE
+========================================================= */
+
+.pipeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.pipeline-item {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #1f2937;
+    border-radius: 9px;
+    background: #0b1120;
+}
+
+.pipeline-item > span {
+    font-size: 11px;
+    color: #60a5fa;
+    font-weight: bold;
+}
+
+.pipeline-item strong {
+    display: block;
+    font-size: 13px;
+}
+
+.pipeline-item small {
+    display: block;
+    color: #6b7280;
+    margin-top: 4px;
+    font-size: 11px;
+}
+
+.pipeline-item.final {
+    border-color: #2563eb;
+    background: #111c36;
+}
+
+.arrow {
+    text-align: center;
+    color: #4b5563;
+    padding: 5px;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.transactions {
+    margin-top: 22px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #1f2937;
+}
+
+th {
+    color: #6b7280;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    font-size: 12px;
+}
+
+td strong {
+    font-weight: 600;
+}
+
+.blocked {
+    color: #f87171;
+    font-weight: bold;
+}
+
+.approved {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.pending {
+    color: #fbbf24;
+    font-weight: bold;
+}
+
+/* =========================================================
+   SYSTEM STATUS
+========================================================= */
+
+.system-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.system-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(17, 24, 39, 0.9);
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+}
+
+.system-card .system-dot {
+    flex-shrink: 0;
+    margin-right: 0;
+}
+
+.system-dot.online {
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+}
+
+.system-card div {
+    flex: 1;
+}
+
+.system-card strong {
+    display: block;
+    font-size: 12px;
+}
+
+.system-card small {
+    display: block;
+    color: #6b7280;
+    margin-top: 3px;
+    font-size: 10px;
+}
+
+.system-card b {
+    color: #4ade80;
+    font-size: 9px;
+}
+
+/* =========================================================
+   EMPTY / LOADING
+========================================================= */
+
+.empty-state {
+    padding: 50px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.loading-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0b1120;
+}
+
+.loading-card {
+    text-align: center;
+    padding: 40px;
+}
+
+.loading-card h2 {
+    margin: 15px 0 5px;
+}
+
+.loading-card p {
+    color: #6b7280;
+}
+
+.loading-spinner {
+    width: 42px;
+    height: 42px;
+    margin: auto;
+    border: 4px solid #1f2937;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.error-card {
+    max-width: 420px;
+}
+
+.error-icon {
+    width: 45px;
+    height: 45px;
+    margin: auto;
+    border-radius: 50%;
+    background: #451a1a;
+    color: #f87171;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.error-card small {
+    display: block;
+    margin-top: 15px;
+    color: #6b7280;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.analyze-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.analyze-btn:hover {
+    background: #1d4ed8;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #4b5563;
+    font-size: 11px;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .monitor-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .main-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .system-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .header {
+        padding: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .transaction-details {
+        grid-template-columns:
+            1fr;
+    }
+
+    .risk-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .risk-circle {
+        margin: auto;
+    }
+
+    .mini-stats {
+        flex-wrap: wrap;
+    }
+
+}
