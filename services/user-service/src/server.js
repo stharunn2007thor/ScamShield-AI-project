@@ -13,15 +13,37 @@ const pool = new Pool({
     port: process.env.POSTGRES_PORT || 5432,
     user: process.env.POSTGRES_USER || "scamshield",
     password: process.env.POSTGRES_PASSWORD || "scamshield",
-    database: process.env.POSTGRES_DB || "scamshield"
+    database: process.env.POSTGRES_DB || "scamshield",
+
+    // PostgreSQL reliability settings
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 5000
+});
+
+pool.on("error", (error) => {
+    console.error("[POSTGRES] Unexpected pool error:", error);
 });
 
 // Health check
-app.get("/health", (req, res) => {
-    res.json({
-        service: "user-service",
-        status: "OK"
-    });
+app.get("/health", async (req, res) => {
+    try {
+        await pool.query("SELECT 1");
+
+        res.json({
+            service: "user-service",
+            status: "OK",
+            database: "CONNECTED"
+        });
+    } catch (error) {
+        console.error("[HEALTH] Database check failed:", error);
+
+        res.status(503).json({
+            service: "user-service",
+            status: "UNAVAILABLE",
+            database: "DISCONNECTED"
+        });
+    }
 });
 
 // Get user
@@ -43,7 +65,7 @@ app.get("/users/:userId", async (req, res) => {
         res.json(result.rows[0]);
 
     } catch (error) {
-        console.error(error);
+        console.error("[GET USER]", error);
 
         res.status(500).json({
             error: "Internal server error"
@@ -51,6 +73,9 @@ app.get("/users/:userId", async (req, res) => {
     }
 });
 
-app.listen(3001, () => {
-    console.log("User Service running on port 3001");
+// Dynamic port for local + cloud deployment
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+    console.log(`User Service running on port ${PORT}`);
 });
