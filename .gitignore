@@ -6,3 +6,18 @@ venv/
 dist/
 build/
 coverage/
+# Local backup files
+*.backup.js
+*.before-*.js
+*.phase*.js
+*_backup*.js
+*.backup.json
+*.sql.backup
+
+# Additional local backup files
+*_before_*.js
+*_before_*.jsx
+*_before_*.css
+*backup*.sql
+*schema.backup.sql
+*.graph-backup.js
